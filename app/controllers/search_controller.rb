@@ -54,13 +54,13 @@ class SearchController < ApplicationController
       end
 
     rescue
-      flash[:notice] = "We're sorry but there is insufficient RDF data. Please try another artist."
-      redirect_to(:controller => :search, :action => :home)
+      # flash[:notice] = "We're sorry but there is insufficient RDF data. Please try another artist."
+      # redirect_to(:controller => :search, :action => :home)
 
-      # respond_to do |format|
-      #   format.html { redirect_to('/search/home', :notice => "We're sorry but there is insufficient RDF data. Please try another artist.") }
-      #   format.xml { render :layout => false }
-      # end
+      respond_to do |format|
+        format.html { redirect_to('/search/home', :notice => "We're sorry but there is insufficient RDF data. Please try another artist.") }
+        format.xml { render :layout => false }
+      end
     end
     
   end
