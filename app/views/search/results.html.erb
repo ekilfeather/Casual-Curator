@@ -17,18 +17,18 @@
 	<p>Get more info about <%= link_to "#{@search_term}", @europeana_url %> in Europeana</p>
 	
 	<h3 class="property type">Date of Birth:
-		<span class="lowkey">
-			<%= @dob.blank? ? "No info available" : @dob %>
+		<span class="lowkey"><%= @dob %>
+			<!-- <%= @dob.blank? ? "No info available" : @dob %> -->
 		</span>
 	</h3>
 	<h3 class="property type">Place of Birth:
-		<span class="lowkey">
-			<%= @place_of_birth.blank? ? "No info available" : @place_of_birth %>
+		<span class="lowkey"><%= @place_of_birth %>
+			<!-- <%= @place_of_birth.blank? ? "No info available" : @place_of_birth %> -->
 		</span>
 	</h3>
 	<h3 class="property type">Date of Death:
-		<span class="lowkey">
-			<%= @dod.blank? ? "No info available" : @dod %>
+		<span class="lowkey"><%= @dod %>
+			<!-- <%= @dod.blank? ? "No info available" : @dod %> -->
 		</span>
 	</h3>
 	
