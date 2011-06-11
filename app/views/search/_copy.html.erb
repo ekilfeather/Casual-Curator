@@ -1,0 +1,45 @@
+<h1>Search results for: <i><%= @search_term %> <!-- (<%= @type %>) --></i></h1>
+
+<p>Search for more info in: <%= link_to "Europeana", @europeana_url %></p>
+
+<h3>Place of Birth:</h3>
+<p><%= @place_of_birth %></p>
+
+<h3>Influenced By:</h3>
+<ul>
+  <% @influenced_by.each do |person| %>
+		<% @influencer = person.to_s.split('.').last %>
+		<li>
+			<%= @influencer.split('_').first.capitalize %> <%= @influencer.split('_').last.capitalize %>
+			[<%= link_to person %>]
+		</li>
+		<!-- <li><%= @influencer.gsub('_',' ').capitalize %> [<%= link_to person %>]</li> -->
+  <% end %>
+</ul>
+
+<h3>Influenced:</h3>
+<ul>
+  <% @influenced.each do |person| %>
+		<% @influenced_artist = person.to_s.split('.').last %>
+    <li>
+			<%= @influenced_artist.split('_').first.capitalize %> 
+			<%= @influenced_artist.split('_').last.capitalize %>
+			<% url = "http://rdf.freebase.com/rdf/en.#{@influenced_artist}" %>
+			[<%= link_to "#{@influenced_artist}", url %>]
+		</li>
+  <% end %>
+</ul>
+
+<!-- <%= @topic %> -->
+
+<%= link_to "Back to search", :controller => "search", :action => "home" %>
+
+
+<!-- <script>
+		$.get({cookie: $(cookies[:_search_app_session]).val()});
+</script> -->
+
+<script>
+	var _search_app_session = '<%= @cookie = cookies['_search_app_session'] %>';
+	// alert(_search_app_session);
+</script>

@@ -1,0 +1,37 @@
+<!DOCTYPE xhtml>
+<html>
+<head>
+  <title>SearchApp</title>
+  <%= stylesheet_link_tag :all %>
+  <%= javascript_include_tag :defaults %>
+  <%= csrf_meta_tag %>
+
+	<meta charset="UTF-8">
+	
+	<link type="text/css" rel="stylesheet" href="http://freebaselibs.com/static/suggest/1.3/suggest.min.css" />
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+	<script type="text/javascript" src="http://freebaselibs.com/static/suggest/1.3/suggest.min.js"></script>
+
+	<!-- <link href="cascurate.css" rel="stylesheet" type="text/css"> -->
+	<script> 
+		$(function() {
+	    $("#q").suggest({
+
+	        "mql_filter": [{
+	            "/people/person/profession": "artist"}]
+	    })
+
+	    .bind("fb-select", function(e, data) {
+	        
+	    });
+
+	});
+	</script>
+
+</head>
+<body>
+<div class="wrapper">
+	<%= yield %>
+</div>
+</body>
+</html>

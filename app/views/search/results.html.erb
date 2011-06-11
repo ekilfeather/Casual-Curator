@@ -1,0 +1,84 @@
+<img src="/images/CC_Logo_sm.jpg" width="800" height="85" alt="cc-logo small">
+<div class="header">
+	<h1><%= @search_term %></h1>
+</div>
+<div class="col" style="width:40px;"></div>
+
+<div class="col">
+  <!-- <img src="/images/vermeer.jpg" title="Johannes Vermeer"> -->
+	<span class="lowkey">
+	<img src="http://img.freebase.com/api/trans/image_thumb/m/03r02tv?errorid=%2Ffreebase%2Fno_image_png&amp;maxheight=200&amp;mode=fit&amp;maxwidth=150" title="<%= @search_term %>"/>
+	</span>
+
+	<!-- <p>
+		<%= @bio %>
+	</p> -->
+
+	<p>Get more info about <%= link_to "#{@search_term}", @europeana_url %> in Europeana</p>
+	
+	<h3 class="property type">Date of Birth:
+		<span class="lowkey">
+			<%= @dob.blank? ? "No info available" : @dob %>
+		</span>
+	</h3>
+	<h3 class="property type">Place of Birth:
+		<span class="lowkey">
+			<%= @place_of_birth.blank? ? "No info available" : @place_of_birth %>
+		</span>
+	</h3>
+	<h3 class="property type">Date of Death:
+		<span class="lowkey">
+			<%= @dod.blank? ? "No info available" : @dod %>
+		</span>
+	</h3>
+	
+	<h3 class="property type">Influenced By:<br>
+		<span class="lowkey">
+			<ul>
+			  <% @influenced_by.each do |person| %>
+					<% @influencer = person.to_s.split('.').last %>
+					<li>
+						<% first_name = @influencer.split('_').first.capitalize %> 
+						<% surname = @influencer.split('_').last.capitalize %>
+						<% url = "http://rdf.freebase.com/ns/en.#{@influencer}" %>
+			
+						<%= @influencer.split('_').first.capitalize %> <%= @influencer.split('_').last.capitalize %> (<%= link_to "info", url %>)
+			
+					</li>
+			  <% end %>
+			</ul>
+		</span>
+	</h3>
+
+	<h3 class="property type">Influenced:<br>
+		<span class="lowkey">
+			<ul>
+			  <% @influenced.each do |person| %>
+					<% @influenced_artist = person.to_s.split('.').last %>
+			    <li>
+						<%= @influenced_artist.split('_').first.capitalize %> 
+						<%= @influenced_artist.split('_').last.capitalize %>
+						<% first_name = @influenced_artist.split('_').first.capitalize %> 
+						<% surname = @influenced_artist.split('_').last.capitalize %>
+						<!-- <% url = "http://rdf.freebase.com/rdf/en.#{@influenced_artist}" %> -->
+						<% url = "http://rdf.freebase.com/ns/en.#{@influenced_artist}" %>
+						(<%= link_to "info", url %>)
+			
+					</li>
+			  <% end %>
+			</ul>
+		</span>
+	</h3>
+
+	<div class="line"></div>
+
+	<a class="btn" onclick="window.interface.result('<%= @cookie %>')" href="#">CURATE</a> with this artist. 
+
+	Or <a href="find_topic.html"><%= link_to "choose another", :controller => "search", :action => "home" %></a>
+
+</div>
+
+<script>
+	var _search_app_session = '<%= @cookie = cookies['_search_app_session'] %>';
+</script>
+
