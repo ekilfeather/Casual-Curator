@@ -16,8 +16,6 @@ class SearchController < ApplicationController
     @influenced = []
     @influenced_by = []
     
-    @rdf_url = rdf_url
-    
     # begin
       
       RDF::Reader.open(rdf_url) do |reader|
