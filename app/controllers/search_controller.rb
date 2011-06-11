@@ -16,7 +16,7 @@ class SearchController < ApplicationController
     @influenced = []
     @influenced_by = []
     
-    begin
+    # begin
       
       RDF::Reader.open(rdf_url) do |reader|
         reader.each_statement do |statement| 
@@ -53,15 +53,15 @@ class SearchController < ApplicationController
         format.xml { render :layout => false }
       end
 
-    rescue
-      # flash[:notice] = "We're sorry but there is insufficient RDF data. Please try another artist."
-      # redirect_to(:controller => :search, :action => :home)
-
-      respond_to do |format|
-        format.html { redirect_to('/search/home', :notice => "We're sorry but there is insufficient RDF data. Please try another artist.") }
-        format.xml { render :layout => false }
-      end
-    end
+    # rescue
+    #       # flash[:notice] = "We're sorry but there is insufficient RDF data. Please try another artist."
+    #       # redirect_to(:controller => :search, :action => :home)
+    # 
+    #       respond_to do |format|
+    #         format.html { redirect_to('/search/home', :notice => "We're sorry but there is insufficient RDF data. Please try another artist.") }
+    #         format.xml { render :layout => false }
+    #       end
+    #     end
     
   end
   
