@@ -12,7 +12,9 @@ gem 'rdf-raptor'
 
 gem 'capistrano'
 
-gem 'mysql2'
+group :production, :test do
+  gem 'mysql2', "~> 0.2.7"
+end
 # group :production, :test do
 #   gem 'mysql2'
 # end
