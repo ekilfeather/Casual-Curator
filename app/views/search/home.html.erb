@@ -3,20 +3,13 @@
 
 <div class="col2">
 	<p id="notice"><%= notice %></p>
-	<!-- <p>&nbsp;</p> -->
 	<p>Choose an artist using the search box below and make an exhibition about them. You'll get lots of images from Europeana that you can use to curate your exhibition.</p>
 		
 	<%= form_tag('/search/results', :method => "get") do %>
 	  <%= label_tag(:q, "Search for") %>
-	  <!-- <div id="freebase_query"> -->
 		<%= text_field_tag :q %>
-		<!-- </div> -->
-	  <!-- <%= submit_tag("Search") %> -->
+	  <noscript><%= submit_tag("Search") %></noscript>
 	<% end %>
-	
-	<!-- <form name="form1" method="post" action="">
-		<input type="text" name="well" id="freebase_query" style="width:250px; margin-left:15px;">
-	</form> -->
 	
 	<p>&nbsp;</p>
 	<p>&nbsp;</p>
@@ -27,6 +20,6 @@
 	<p>&nbsp;</p>
 	<p>&nbsp;</p>
 	<br>
-      <div class="line"></div>
+    <div class="line"></div>
   	go go go!
 </div>

@@ -5,7 +5,7 @@ set :application, 'curator'
 
 # file paths
 set :repository,  "#{user}@#{domain}:#{application}.git" 
-set :deploy_to, "/home/#{user}/#{domain}" 
+set :deploy_to, "/home/#{user}/#{domain}"
 
 # distribute your applications across servers (the instructions below put them
 # all on the same server, defined above as 'domain', adjust as necessary)

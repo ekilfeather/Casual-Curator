@@ -1,20 +1,22 @@
 <img src="/images/CC_Logo_sm.jpg" width="800" height="85" alt="cc-logo small">
 <div class="header">
-	<h1><%= @search_term %></h1>
+	<h1><%= @artist_name %></h1>
 </div>
 <div class="col" style="width:40px;"></div>
 
 <div class="col">
   <!-- <img src="/images/vermeer.jpg" title="Johannes Vermeer"> -->
 	<span class="lowkey">
-	<img src="http://img.freebase.com/api/trans/image_thumb/m/03r02tv?errorid=%2Ffreebase%2Fno_image_png&amp;maxheight=200&amp;mode=fit&amp;maxwidth=150" title="<%= @search_term %>"/>
+	<img src="http://img.freebase.com/api/trans/image_thumb/m/<%= @image %>?errorid=%2Ffreebase%2Fno_image_png&amp;maxheight=200&amp;mode=fit&amp;maxwidth=150" title="<%= @search_term %>"/>
 	</span>
 
-	<!-- <p>
+	<!-- 
+	<p>
 		<%= @bio %>
-	</p> -->
+	</p> 
+	-->
 
-	<p>Get more info about <%= link_to "#{@search_term}", @europeana_url %> in Europeana</p>
+	<p>Get more info about <%= link_to "#{@artist_name}", @europeana_url %> in Europeana</p>
 	
 	<h3 class="property type">Date of Birth:
 		<span class="lowkey"><%= @dob %></span>
@@ -26,6 +28,9 @@
 		<span class="lowkey"><%= @dod %></span>
 	</h3>
 	
+	<br />
+	<br />
+	
 	<h3 class="property type">Influenced By:<br>
 		<span class="lowkey">
 			<ul>
@@ -36,7 +41,9 @@
 						<% surname = @influencer.split('_').last.capitalize %>
 						<% url = "http://rdf.freebase.com/ns/en.#{@influencer}" %>
 			
-						<%= @influencer.split('_').first.capitalize %> <%= @influencer.split('_').last.capitalize %> (<%= link_to "info", url %>)
+						<%= @influencer.split('_').first.capitalize %> 
+						<%= @influencer.split('_').last.capitalize %> 
+						(<%= link_to "info", url %>)
 			
 					</li>
 			  <% end %>
@@ -66,13 +73,12 @@
 
 	<div class="line"></div>
 
-	<a class="btn" onclick="window.interface.result('<%= @cookie %>')" href="#">CURATE</a> with this artist. 
+	<a class="btn" onclick="window.interface.result('<%= @search_term %>;<%= @cookie %>')" href="#">CURATE</a> with this artist. 
 
-	Or <a href="find_topic.html"><%= link_to "choose another", :controller => "search", :action => "home" %></a>
+	Or <%= link_to "choose another", :controller => "search", :action => "home" %>
 
 </div>
 
 <script>
 	var _search_app_session = '<%= @cookie = cookies['_search_app_session'] %>';
 </script>
-

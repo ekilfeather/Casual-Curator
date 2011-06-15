@@ -8,9 +8,11 @@ class SearchController < ApplicationController
 
   def results
     @search_term = params[:q]
+    @artist_name = params[:term]
     # lowercase everything and convert spaces to underscores
     converted_search_term = @search_term.downcase.gsub(/ +/,'_')
-    rdf_url = "http://rdf.freebase.com/rdf/en.#{converted_search_term}"
+    rdf_url = "http://rdf.freebase.com/rdf/en.#{@search_term}"
+    # rdf_url = "http://rdf.freebase.com/rdf/en.#{converted_search_term}"
     @core_topic = converted_search_term
     
     @influenced = []
@@ -20,9 +22,14 @@ class SearchController < ApplicationController
           
       RDF::Reader.open(rdf_url) do |reader|
         reader.each_statement do |statement| 
-          if statement.predicate == 'http://rdf.freebase.com/ns/type.key.namespace'
+          if statement.predicate == 'http://rdf.freebase.com/ns/common.topic.article'
             @bio = statement.object.to_s
           end
+          
+          if statement.predicate == 'http://rdf.freebase.com/ns/common.topic.image'
+            @image = statement.object.to_s.split('.').last
+          end
+          
           if statement.predicate == 'http://rdf.freebase.com/ns/people.person.place_of_birth'
             @place_of_birth = statement.object.to_s.split('.').last.capitalize
           end
@@ -43,7 +50,7 @@ class SearchController < ApplicationController
           # end     
           @cookie = cookies['_search_app_session']
           # cookies['topic'] = converted_search_term
-          @europeana_url = "http://api.europeana.eu/api/opensearch.rss?searchTerms=#{converted_search_term}&enrichment_place_label:#{@place_of_birth}&wskey=TPEKSEHABK"
+          @europeana_url = "http://api.europeana.eu/api/opensearch.rss?searchTerms=#{@artist_name}&enrichment_place_label:#{@place_of_birth}&wskey=TPEKSEHABK"
         end # close reader do
       end
       

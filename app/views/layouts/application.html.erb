@@ -15,17 +15,46 @@
 	<!-- <link href="cascurate.css" rel="stylesheet" type="text/css"> -->
 	<script> 
 		$(function() {
-	    $("#q").suggest({
+	    // $("#q").suggest({
+	    // 	
+	    //     "mql_filter": [{
+	    //         "/people/person/profession": "artist"}]
+	    // })
+	    // 	
+	    // .bind("fb-select", function(e, data) {
+	    //     
+	    // });
+		
+			$("#q").suggest({
+			       "mql_filter": [{
+			           "/people/person/profession": "artist"}]
+			   })
 
-	        "mql_filter": [{
-	            "/people/person/profession": "artist"}]
-	    })
+			   .bind("fb-select", function(e, data, method) {
+			       window.location='/search/results?utf8=✓&q=' + data.id.substring(4) + '&term=' + data.name ;
+			   });
+			
+				// [{
+				// 			    "/common/topic/image" : 
+				// 	[{
+				// 			        "id" : data.id #null
+				// 			    }],
+				//   "name" : "bill gates",
+				//   "type" : "/people/person"
+				// }]
 
-	    .bind("fb-select", function(e, data) {
-	        
-	    });
+			// });
 
-	});
+			// function post_to_url(url, data) {
+			//    $.ajax({
+			//        type: 'GET',
+			//        url: url,
+			//        data: data,
+			//    });
+			// };
+		});	
+
+
 	</script>
 
 </head>
