@@ -11,7 +11,7 @@ gem 'mongrel'
 gem 'rdf-raptor'
 
 gem 'capistrano'
-group :deployment, :test do
+group :production, :test do
   gem 'mysql2'
 end
 
