@@ -11,9 +11,11 @@ gem 'mongrel'
 gem 'rdf-raptor'
 
 gem 'capistrano'
-group :production, :test do
-  gem 'mysql2'
-end
+
+gem 'mysql2'
+# group :production, :test do
+#   gem 'mysql2'
+# end
 
 # Use unicorn as the web server
 # gem 'unicorn'
