@@ -1,11 +1,11 @@
 
-set :user, 'monica'
-set :domain, 'curator.dmc.dit.ie'
+set :user, 'git'
+set :domain, 'studiofs'
 set :application, 'curator'
 
 # file paths
-set :repository,  "#{user}@#{domain}:#{application}.git" 
-set :deploy_to, "/home/#{user}/#{domain}"
+set :repository, "studiofs:repositories/curator.git" 
+set :deploy_to, "/Users/#{user}/deployments/curator.dmc.dit.ie" 
 
 # distribute your applications across servers (the instructions below put them
 # all on the same server, defined above as 'domain', adjust as necessary)
